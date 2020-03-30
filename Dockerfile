@@ -46,6 +46,11 @@ RUN    apk update \
 	&& echo Downloaded reportgenerator.properties file \
 	&& mv reportgenerator.properties ${JMETER_BIN} \
 	&& echo reportgenerator.properties copied \
+	$$ echo Extract the Report Template folder
+	&& curl -L --silent ${JMETER_REPORT_TEMPLATE} >  /tmp/dependencies/report-template.tgz \
+	&& echo download of Report template folder completed \
+    && tar -xzf /tmp/dependencies/report-template.tgz -C ${JMETER_BIN} \
+	&& echo report template folder copied \	
 	&& wget ${JMETER_JMETER_PROPERTY} \
 	&& echo Downloaded jmeter.properties file \
 	&& mv jmeter.properties ${JMETER_BIN} \
